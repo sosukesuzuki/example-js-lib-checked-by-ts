@@ -1,0 +1,36 @@
+{
+  "type": "module",
+  "name": "example-js-lib-checked-by-ts",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "tsc -p ./jsconfig.json --noEmit false --emitDeclarationOnly --declaration --declarationDir ./types",
+    "fix": "npm run fix:eslint && npm run fix:prettier",
+    "fix:eslint": "npm run lint:eslint -- --fix",
+    "fix:prettier": "npm run lint:prettier -- --write",
+    "lint": "concurrently \"npm:lint:*\"",
+    "lint:eslint": "eslint --ext .js src",
+    "lint:prettier": "prettier --check src",
+    "lint:tsc": "tsc --noEmit -p ./jsconfig.json"
+  },
+  "exports": {
+    ".": {
+      "types": "./types",
+      "import": "./src/index.js"
+    }
+  },
+  "author": {
+    "name": "Sosuke Suzuki"
+  },
+  "license": "MIT",
+  "volta": {
+    "node": "18.15.0"
+  },
+  "devDependencies": {
+    "concurrently": "^8.0.1",
+    "eslint": "^8.37.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-unicorn": "^46.0.0",
+    "prettier": "^2.8.7",
+    "typescript": "^5.0.3"
+  }
+}
